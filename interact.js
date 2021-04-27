@@ -16,13 +16,12 @@ const run = async function () {
     const transfer = await limeTokenContract.transfer(
         "0x465b2b6CC578268BA33f24A7e151D144b0E44D29",
         ethers.BigNumber.from("1430000000000000000"));
-
-
+        
     const balanceAcc2 = await (await limeTokenContract.balanceOf("0x465b2b6CC578268BA33f24A7e151D144b0E44D29")).toString();
     console.log(balanceAcc2)
 
     const leftover = await balanceAcc1();
-    const burnLeftover = limeTokenContract.burn("0xd9995bae12fee327256ffec1e3184d492bd94c31", ethers.BigNumber.from(leftover.toString()))
+    const burnLeftover = await limeTokenContract.burn(leftover)
     console.log(await balanceAcc1())
 }
 run()
